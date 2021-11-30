@@ -74,7 +74,7 @@ class Model(base.Model):
         loader = tqdm.trange(opt.max_iter,desc="training",leave=False)
         # visualize initial state
         var = self.graph.forward(opt,var)
-        self.visualize(opt,var,step=0)
+        #self.visualize(opt,var,step=0)
         for it in loader:
             # train iteration
             loss = self.train_iteration(opt,var,loader)
