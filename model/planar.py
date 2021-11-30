@@ -25,7 +25,9 @@ class Model(base.Model):
 
     def load_dataset(self,opt,eval_split=None):
         image_raw = PIL.Image.open(opt.data.image_fname)
+        print("set")
         self.image_raw = torchvision_F.to_tensor(image_raw).to(opt.device)
+        print("made past image_raw")
 
     def build_networks(self,opt):
         super().build_networks(opt)
@@ -187,7 +189,7 @@ class Graph(base.Graph):
     def compute_loss(self,opt,var,mode=None):
         loss = edict()
         if opt.loss_weight.render is not None:
-            image_pert = var.image_pert.view(opt.batch_size,4,opt.H_crop*opt.W_crop).permute(0,2,1)
+            image_pert = var.image_pert.view(opt.batch_size,3,opt.H_crop*opt.W_crop).permute(0,2,1)
             loss.render = self.MSE_loss(var.rgb_warped,image_pert)
         return loss
 
