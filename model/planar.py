@@ -181,7 +181,7 @@ class Graph(base.Graph):
         xy_grid_warped = warp.warp_grid(opt,xy_grid,self.warp_param.weight)
         # render images
         var.rgb_warped = self.neural_image.forward(opt,xy_grid_warped) # [B,HW,3]
-        var.rgb_warped_map = var.rgb_warped.view(opt.batch_size,opt.H_crop,opt.W_crop,3).permute(0,3,1,2) # [B,3,H,W]
+        var.rgb_warped_map = var.rgb_warped.view(opt.batch_size,opt.H_crop,opt.W_crop,4).permute(0,3,1,2) # [B,3,H,W]
         return var
 
     def compute_loss(self,opt,var,mode=None):
