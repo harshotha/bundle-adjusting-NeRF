@@ -21,7 +21,7 @@ class Model(base.Model):
 
     def __init__(self,opt):
         super().__init__(opt)
-        opt.H_crop,opt.W_crop = opt.data.patch_crop
+        opt.H_crop,opt.W_crop = 557,558#opt.data.patch_crop
 
     def load_dataset(self,opt,eval_split=None):
         image_raw = PIL.Image.open(opt.data.image_fname)
